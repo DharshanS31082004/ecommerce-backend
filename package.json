@@ -1,13 +1,14 @@
 {
   "name": "ecommerce-backend",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Ecommerce backend API with products, categories, orders and students",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js",
+    "dev": "node app.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Darshan",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
