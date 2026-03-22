@@ -11,22 +11,34 @@ const errorHandler = require("./middleware/errorHandler");
 //  Use logger middleware (GLOBAL)
 app.use(logger);
 
-//  Import routes
+//  OLD ROUTES (keep them)
 const categoryRoutes = require("./routes/categoryRoutes");
 const productRoutes = require("./routes/productRoutes");
 const orderRoutes = require("./routes/orderRoutes");
-const studentRoutes = require("./routes/studentRoutes"); //  NEW
+const studentRoutes = require("./routes/studentRoutes");
 
-// Use routes (API endpoints)
+//  NEW SERVICES (IMPORTANT)
+const studentService = require("./services/student-service/routes");
+const courseService = require("./services/course-service/src/routes");
+const collegeService = require("./services/college-service/src/routes");
+const userService = require("./services/user-service/src/routes");
+
+//  Use OLD routes
 app.use("/categories", categoryRoutes);
 app.use("/products", productRoutes);
 app.use("/orders", orderRoutes);
-app.use("/students", studentRoutes); // NEW
+app.use("/students-old", studentRoutes); // renamed to avoid conflict
 
-// Error handling middleware (ALWAYS LAST)
+//  Use NEW service routes (MAIN TASK)
+app.use("/students", studentService);
+app.use("/courses", courseService);
+app.use("/colleges", collegeService);
+app.use("/users", userService);
+
+//  Error handling middleware (ALWAYS LAST)
 app.use(errorHandler);
 
-// Start server
+//  Start server
 app.listen(3000, () => {
   console.log("Server running on port 3000");
 });
